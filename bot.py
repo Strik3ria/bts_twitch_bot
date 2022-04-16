@@ -2,15 +2,22 @@ import os
 
 from twitchio.ext import commands
 from dotenv import load_dotenv
+from datetime import date
 
 load_dotenv()
 TOKEN = os.getenv('TWITCH_TOKEN')
 
 
-class logger:
+class Logger:
 
-    def __init__(self, message):
-        self.message = message
+    def info(self, message):
+        print(f'INFO: {message}')
+
+    def error(self, message):
+        print(f'ERROR: {message}')
+
+    def critical(self, message):
+        print(f'CRITICAL: {message}')
 
 class BTSTwitchBot(commands.Bot):
 
@@ -18,8 +25,9 @@ class BTSTwitchBot(commands.Bot):
         super().__init__(
             token=TOKEN,
             prefix='!',
-            initial_channels=['strik3ria']
+            initial_channels=['becksandtedsshow']
         )
+        self.logger = Logger()
 
     async def event_ready(self):
         print(f'Logged in as | {self.nick}')
@@ -27,18 +35,21 @@ class BTSTwitchBot(commands.Bot):
     @commands.command(name="so")
     async def shoutout(self, ctx, message):
         if len(message.split()) < 2 and ctx.author.is_mod:
+            self.logger.info("Shoutout - {ctx.author.name} - {date.today()}")
             await ctx.send(
                 f'Be sure to check out {message} over at twitch.tv/{message}'
             )
 
     @commands.command(name="discord")
     async def discord(self, ctx):
+        self.logger.info("Discord - {ctx.author.name} - {date.today()}")
         await ctx.send(
             "Be sure to check us out on Discord at https://discord.gg/kRuKwdRdJw"
         )
 
     @commands.command(name="facebook")
     async def facebook(self, ctx):
+        self.logger.info("Facebook - {ctx.author.name} - {date.today()}")
         await ctx.send(
             "Wanna get updates on what we are up to? Check out and follow our "
             "facebook at https://facebook.com/BecksAndTedsShow"
@@ -46,6 +57,7 @@ class BTSTwitchBot(commands.Bot):
 
     @commands.command(name="twitter")
     async def twitter(self, ctx):
+        self.logger.info("Twitter - {ctx.author.name} - {date.today()}")
         await ctx.send(
             "Catch up an what we have coming up and going on! Follow us on Twitter"
             " at https://twitter.com/BecksAndTedsSho"
