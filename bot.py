@@ -35,21 +35,21 @@ class BTSTwitchBot(commands.Bot):
     @commands.command(name="so")
     async def shoutout(self, ctx, message):
         if len(message.split()) < 2 and ctx.author.is_mod:
-            self.logger.info("Shoutout - {ctx.author.name} - {date.today()}")
+            self.logger.info(f"Shoutout - {ctx.author.name} - {date.today()}")
             await ctx.send(
                 f'Be sure to check out {message} over at twitch.tv/{message}'
             )
 
     @commands.command(name="discord")
     async def discord(self, ctx):
-        self.logger.info("Discord - {ctx.author.name} - {date.today()}")
+        self.logger.info(f"Discord - {ctx.author.name} - {date.today()}")
         await ctx.send(
             "Be sure to check us out on Discord at https://discord.gg/kRuKwdRdJw"
         )
 
     @commands.command(name="facebook")
     async def facebook(self, ctx):
-        self.logger.info("Facebook - {ctx.author.name} - {date.today()}")
+        self.logger.info(f"Facebook - {ctx.author.name} - {date.today()}")
         await ctx.send(
             "Wanna get updates on what we are up to? Check out and follow our "
             "facebook at https://facebook.com/BecksAndTedsShow"
@@ -57,7 +57,7 @@ class BTSTwitchBot(commands.Bot):
 
     @commands.command(name="twitter")
     async def twitter(self, ctx):
-        self.logger.info("Twitter - {ctx.author.name} - {date.today()}")
+        self.logger.info(f"Twitter - {ctx.author.name} - {date.today()}")
         await ctx.send(
             "Catch up an what we have coming up and going on! Follow us on Twitter"
             " at https://twitter.com/BecksAndTedsSho"
