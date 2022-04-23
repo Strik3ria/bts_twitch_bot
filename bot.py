@@ -62,6 +62,13 @@ class BTSTwitchBot(commands.Bot):
             "Catch up an what we have coming up and going on! Follow us on Twitter"
             " at https://twitter.com/BecksAndTedsSho"
         )
+    
+    @commands.command(name="follow")
+    async def follow(self, ctx):
+        self.logger.info(f"Follow - {ctx.author.name} - {date.today()}")
+        await ctx.send(
+            "Make sure to follow us! We are working hard to get to 50 followers!"
+        )
 
 
 if __name__ == '__main__':
